@@ -1,3 +1,17 @@
+// Set PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// PDF Viewer Variables
+let pdfDoc = null;
+let currentPage = 1;
+let totalPages = 0;
+
+// Audio Player Variables
+const audioPlayer = document.getElementById('audioPlayer');
+const playBtn = document.getElementById('playBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+const stopBtn = document.getElementById('stopBtn');
+
 // Sources data
 const sources = [
     {
@@ -113,6 +127,76 @@ function renderSources() {
     });
 }
 
+// PDF Viewer Functions
+async function loadPDF() {
+    try {
+        pdfDoc = await pdfjsLib.getDocument('1.pdf').promise;
+        totalPages = pdfDoc.numPages;
+        document.getElementById('totalPages').textContent = totalPages;
+        renderPDFPage(currentPage);
+    } catch (error) {
+        console.error('خطأ في تحميل ملف PDF:', error);
+        document.getElementById('pdfViewer').innerHTML = '<p style="color: red; text-align: center;">عذراً، لم يتمكن من تحميل ملف PDF. تأكد من وجود ملف 1.pdf في نفس المجلد.</p>';
+    }
+}
+
+async function renderPDFPage(pageNum) {
+    if (!pdfDoc) return;
+    
+    try {
+        const page = await pdfDoc.getPage(pageNum);
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale });
+        
+        const canvas = document.getElementById('pdfCanvas');
+        const context = canvas.getContext('2d');
+        
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        };
+        
+        await page.render(renderContext).promise;
+        document.getElementById('currentPage').textContent = pageNum;
+    } catch (error) {
+        console.error('خطأ في عرض الصفحة:', error);
+    }
+}
+
+function nextPage() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderPDFPage(currentPage);
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderPDFPage(currentPage);
+    }
+}
+
+// Audio Player Functions
+function playAudio() {
+    audioPlayer.play();
+    playBtn.style.opacity = '0.5';
+}
+
+function pauseAudio() {
+    audioPlayer.pause();
+    playBtn.style.opacity = '1';
+}
+
+function stopAudio() {
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    playBtn.style.opacity = '1';
+}
+
 // Navigation active link
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section');
@@ -152,7 +236,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    // Render sources
     renderSources();
+    
+    // Load PDF
+    loadPDF();
+    
+    // Setup audio controls
+    playBtn.addEventListener('click', playAudio);
+    pauseBtn.addEventListener('click', pauseAudio);
+    stopBtn.addEventListener('click', stopAudio);
+    
+    // Setup PDF controls
+    document.getElementById('nextPageBtn').addEventListener('click', nextPage);
+    document.getElementById('prevPageBtn').addEventListener('click', prevPage);
+    
+    // Update active nav link
     updateActiveNavLink();
     
     // Add scroll animation
@@ -173,5 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.source-card').forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
         observer.observe(card);
+    });
+
+    // Keyboard navigation for PDF
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextPage();
+        if (e.key === 'ArrowLeft') prevPage();
     });
 });
