@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصادر بحثنا</title>
+    <title>مصادر بحثية شاملة</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -18,6 +19,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#media" class="nav-link">الملفات</a></li>
                 <li><a href="#sources" class="nav-link">المصادر</a></li>
                 <li><a href="#about" class="nav-link">حول</a></li>
             </ul>
@@ -26,21 +28,83 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="lightning-container">
+            <div class="lightning"></div>
+            <div class="lightning"></div>
+            <div class="lightning"></div>
+        </div>
         <div class="hero-content">
             <h1 class="hero-title">مصادر بحثية شاملة</h1>
-            <p class="hero-subtitle">دور الموارد البشرية الاستراتيجية في تعزيز الاستدامة الصناعية والحد من دوران العمالة</p>
-            <button class="cta-button" onclick="document.getElementById('sources').scrollIntoView({behavior: 'smooth'})">
-                استكشف المصادر
+            <p class="hero-subtitle">إدارة الموارد البشرية والاستدامة الصناعية</p>
+            <button class="cta-button" onclick="document.getElementById('media').scrollIntoView({behavior: 'smooth'})">
+                استكشف الملفات والمصادر
             </button>
         </div>
         <div class="hero-background"></div>
+    </section>
+
+    <!-- Media Section (PDF & MP3) -->
+    <section id="media" class="media-section">
+        <div class="container">
+            <h2 class="section-title">الملفات الوسائط</h2>
+            <p class="section-subtitle">استمع واقرأ المحتوى التفاعلي</p>
+            
+            <div class="media-container">
+                <!-- Audio Player -->
+                <div class="media-card audio-card pulse-effect">
+                    <div class="media-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>مشغل الصوت</h3>
+                    <p class="media-description">استمع إلى الملف الصوتي</p>
+                    <div class="audio-player">
+                        <audio id="audioPlayer" controls>
+                            <source src="1.ogg" type="audio/ogg">
+                            متصفحك لا يدعم تشغيل الملفات الصوتية
+                        </audio>
+                    </div>
+                    <div class="audio-controls">
+                        <button id="playBtn" class="control-btn">
+                            <i class="fas fa-play"></i> تشغيل
+                        </button>
+                        <button id="pauseBtn" class="control-btn">
+                            <i class="fas fa-pause"></i> إيقاف
+                        </button>
+                        <button id="stopBtn" class="control-btn">
+                            <i class="fas fa-stop"></i> إيقاف كامل
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PDF Viewer -->
+                <div class="media-card pdf-card pulse-effect">
+                    <div class="media-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>عارض المستندات</h3>
+                    <p class="media-description">اقرأ ملف PDF</p>
+                    <div class="pdf-controls">
+                        <button id="prevPageBtn" class="control-btn">
+                            <i class="fas fa-chevron-right"></i> السابق
+                        </button>
+                        <span id="pageInfo" class="page-info">الصفحة <span id="currentPage">1</span> من <span id="totalPages">0</span></span>
+                        <button id="nextPageBtn" class="control-btn">
+                            <i class="fas fa-chevron-left"></i> التالي
+                        </button>
+                    </div>
+                    <div id="pdfViewer" class="pdf-viewer">
+                        <canvas id="pdfCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Sources Section -->
     <section id="sources" class="sources-section">
         <div class="container">
             <h2 class="section-title">المصادر الأكاديمية</h2>
-            <p class="section-subtitle"> المصادر والمراجع </p>
+            <p class="section-subtitle">مجموعة شاملة من المصادر والمراجع العلمية</p>
             
             <div class="sources-grid" id="sourcesList">
                 <!-- Sources will be inserted here by JavaScript -->
@@ -51,9 +115,10 @@
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">أعداد الطالب : سيف علي</h2>
+            <h2 class="section-title">حول هذا المشروع</h2>
             <div class="about-content">
-               
+                <p>تم جمع هذه المصادر كجزء من بحث شامل حول دور إدارة الموارد البشرية في تحقيق الاستدامة الصناعية وخفض معدلات دوران العمالة.</p>
+                <p>يتضمن هذا المشروع مراجع أكاديمية موثوقة من جامعات ومؤسسات بحثية معروفة، بالإضافة إلى مقالات متخصصة وأوراق بحثية.</p>
             </div>
         </div>
     </section>
@@ -61,7 +126,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p class="footer-text"> جميع الحقوق محفوظة</p>
+            <p class="footer-text">© 2025 - جميع الحقوق محفوظة</p>
             <p class="footer-author">
                 <i class="fas fa-user-circle"></i>
                 <span>سيف علي</span>
