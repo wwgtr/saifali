@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المصادر البحثية - إدارة الموارد البشرية والاستدامة</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-book"></i>
+                <span>المصادر البحثية</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#sources" class="nav-link">المصادر</a></li>
+                <li><a href="#about" class="nav-link">حول</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">مصادر بحثية شاملة</h1>
+            <p class="hero-subtitle">إدارة الموارد البشرية والاستدامة الصناعية</p>
+            <button class="cta-button" onclick="document.getElementById('sources').scrollIntoView({behavior: 'smooth'})">
+                استكشف المصادر
+            </button>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <!-- Sources Section -->
+    <section id="sources" class="sources-section">
+        <div class="container">
+            <h2 class="section-title">المصادر الأكاديمية</h2>
+            <p class="section-subtitle">مجموعة شاملة من المصادر والمراجع العلمية</p>
+            
+            <div class="sources-grid" id="sourcesList">
+                <!-- Sources will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">حول هذا المشروع</h2>
+            <div class="about-content">
+                <p>تم جمع هذه المصادر كجزء من بحث شامل حول دور إدارة الموارد البشرية في تحقيق الاستدامة الصناعية وخفض معدلات دوران العمالة.</p>
+                <p>يتضمن هذا المشروع مراجع أكاديمية موثوقة من جامعات ومؤسسات بحثية معروفة، بالإضافة إلى مقالات متخصصة وأوراق بحثية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2025 - جميع الحقوق محفوظة</p>
+            <p class="footer-author">
+                <i class="fas fa-user-circle"></i>
+                <span>سيف علي</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
