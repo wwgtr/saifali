@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصادر بحثية شاملة</title>
+    <title>دور الموارد البشرية في الاستدامة الصناعية</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
+    <!-- Spider Web Background -->
+    <canvas id="spiderWeb"></canvas>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-book"></i>
-                <span>المصادر البحثية</span>
+            <div class="logo">
+                <i class="fas fa-leaf"></i> الاستدامة الصناعية
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
-                <li><a href="#media" class="nav-link">الملفات</a></li>
-                <li><a href="#sources" class="nav-link">المصادر</a></li>
+                <li><a href="#home" class="nav-link">الرئيسية</a></li>
+                <li><a href="#content" class="nav-link">المحتوى</a></li>
+                <li><a href="#audio" class="nav-link">الملفات</a></li>
                 <li><a href="#about" class="nav-link">حول</a></li>
             </ul>
         </div>
@@ -28,86 +28,174 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="lightning-container">
-            <div class="lightning"></div>
-            <div class="lightning"></div>
-            <div class="lightning"></div>
+        <div class="hero-content fade-in">
+            <h1>دور الموارد البشرية الاستراتيجية</h1>
+            <p>في تعزيز الاستدامة الصناعية والحد من دوران العمالة</p>
+            <a href="#content" class="cta-button">ابدأ القراءة</a>
         </div>
-        <div class="hero-content">
-            <h1 class="hero-title">مصادر بحثية شاملة</h1>
-            <p class="hero-subtitle">إدارة الموارد البشرية والاستدامة الصناعية</p>
-            <button class="cta-button" onclick="document.getElementById('media').scrollIntoView({behavior: 'smooth'})">
-                استكشف الملفات والمصادر
-            </button>
-        </div>
-        <div class="hero-background"></div>
     </section>
 
-    <!-- Media Section (PDF & MP3) -->
-    <section id="media" class="media-section">
+    <!-- Content Section -->
+    <section id="content" class="content-section">
         <div class="container">
-            <h2 class="section-title">الملفات الوسائط</h2>
-            <p class="section-subtitle">استمع واقرأ المحتوى التفاعلي</p>
-            
-            <div class="media-container">
-                <!-- Audio Player -->
-                <div class="media-card audio-card pulse-effect">
-                    <div class="media-icon">
-                        <i class="fas fa-music"></i>
+            <div class="content-wrapper">
+                <!-- Sidebar Navigation -->
+                <aside class="sidebar">
+                    <div class="sidebar-menu">
+                        <h3>فهرس المحتوى</h3>
+                        <ul id="toc">
+                            <li><a href="#section-1" class="toc-link">مشكلة البحث</a></li>
+                            <li><a href="#section-2" class="toc-link">أهمية البحث</a></li>
+                            <li><a href="#section-3" class="toc-link">الإطار النظري</a></li>
+                            <li><a href="#section-4" class="toc-link">الاستدامة والدوران</a></li>
+                            <li><a href="#section-5" class="toc-link">الاستراتيجيات</a></li>
+                            <li><a href="#section-6" class="toc-link">آليات الخفض</a></li>
+                            <li><a href="#section-7" class="toc-link">دراسات الحالة</a></li>
+                        </ul>
                     </div>
-                    <h3>مشغل الصوت</h3>
-                    <p class="media-description">استمع إلى الملف الصوتي</p>
-                    <div class="audio-player">
-                        <audio id="audioPlayer" controls>
-                            <source src="1.ogg" type="audio/ogg">
-                            متصفحك لا يدعم تشغيل الملفات الصوتية
-                        </audio>
-                    </div>
-                    <div class="audio-controls">
-                        <button id="playBtn" class="control-btn">
-                            <i class="fas fa-play"></i> تشغيل
-                        </button>
-                        <button id="pauseBtn" class="control-btn">
-                            <i class="fas fa-pause"></i> إيقاف
-                        </button>
-                        <button id="stopBtn" class="control-btn">
-                            <i class="fas fa-stop"></i> إيقاف كامل
-                        </button>
-                    </div>
-                </div>
+                </aside>
 
-                <!-- PDF Viewer -->
-                <div class="media-card pdf-card pulse-effect">
-                    <div class="media-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>عارض المستندات</h3>
-                    <p class="media-description">اقرأ ملف PDF</p>
-                    <div class="pdf-controls">
-                        <button id="prevPageBtn" class="control-btn">
-                            <i class="fas fa-chevron-right"></i> السابق
-                        </button>
-                        <span id="pageInfo" class="page-info">الصفحة <span id="currentPage">1</span> من <span id="totalPages">0</span></span>
-                        <button id="nextPageBtn" class="control-btn">
-                            <i class="fas fa-chevron-left"></i> التالي
-                        </button>
-                    </div>
-                    <div id="pdfViewer" class="pdf-viewer">
-                        <canvas id="pdfCanvas"></canvas>
-                    </div>
-                </div>
+                <!-- Main Content -->
+                <main class="main-content">
+                    <!-- Section 1 -->
+                    <article id="section-1" class="content-article slide-in">
+                        <h2>مشكلة البحث</h2>
+                        <p>تشهد المنشآت الصناعية في القرن الحادي والعشرين تحولات جذرية متسارعة، حيث تواجه ضغوطاً متزامنة لتحقيق الربحية والحفاظ على القدرة التنافسية، مع الالتزام بمتطلبات الاستدامة البيئية والاجتماعية والاقتصادية.</p>
+                        <p>وفي خضم هذه التحديات، تبرز إشكالية دوران العمالة كعائق رئيسي أمام تحقيق الاستقرار التشغيلي والاستدامة الطويلة الأجل. يُعد دوران العمالة، سواء كان طوعيًا أو غير طوعي، مصدرًا رئيسيًا لتكاليف خفية ومباشرة تؤثر سلبًا على أداء المصانع وسمعتها.</p>
+                    </article>
+
+                    <!-- Section 2 -->
+                    <article id="section-2" class="content-article slide-in">
+                        <h2>أهمية البحث</h2>
+                        <p>تكمن الأهمية الاستثنائية لهذا البحث في كونه يقدم رؤية متكاملة تجمع بين متطلبات الاستدامة الشاملة (الاقتصادية، البيئية، الاجتماعية) وأهداف استقرار القوى العاملة.</p>
+                        <p>يساهم البحث في سد الفجوة المعرفية بين مفاهيم الاستدامة وإدارة الموارد البشرية، ويقدم حلولاً مبتكرة للتحديات التي تواجه القطاع الصناعي في هذا المجال.</p>
+                    </article>
+
+                    <!-- Section 3 -->
+                    <article id="section-3" class="content-article slide-in">
+                        <h2>الإطار النظري والمفاهيمي</h2>
+                        <h3>تطور مفهوم الاستدامة في القطاع الصناعي</h3>
+                        <p>شهد مفهوم الاستدامة تحولاً جذرياً من التركيز الضيق على الجوانب البيئية إلى مفهوم ثلاثي الأبعاد يشمل الأبعاد الاقتصادية والبيئية والاجتماعية.</p>
+                        
+                        <div class="sustainability-box">
+                            <div class="box-item">
+                                <h4><i class="fas fa-chart-line"></i> الاستدامة الاقتصادية</h4>
+                                <p>قدرة المصنع على تحقيق الربحية والنمو المستمر مع الحفاظ على الميزة التنافسية.</p>
+                            </div>
+                            <div class="box-item">
+                                <h4><i class="fas fa-leaf"></i> الاستدامة البيئية</h4>
+                                <p>التزام المصنع بالممارسات الصديقة للبيئة والحد من الآثار السلبية لأنشطته على الكوكب.</p>
+                            </div>
+                            <div class="box-item">
+                                <h4><i class="fas fa-people-group"></i> الاستدامة الاجتماعية</h4>
+                                <p>مساهمة المصنع في تنمية المجتمع ورفاهية العاملين وتحسين جودة الحياة.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Section 4 -->
+                    <article id="section-4" class="content-article slide-in">
+                        <h2>مفهوم دوران العمالة</h2>
+                        <p>دوران العمالة هو المعدل الذي يترك به الموظفون الشركة ويحل محلهم موظفون جدد. يمكن أن يكون دوران العمالة طوعيًا أو غير طوعي، وله أبعاد وأنماط مختلفة تؤثر على المنشآت الصناعية.</p>
+                        
+                        <div class="turnover-types">
+                            <div class="type-card">
+                                <h4>الدوران الطوعي</h4>
+                                <p>يحدث عندما يغادر الموظف بمحض إرادته بسبب عوامل مختلفة مثل البحث عن فرص أفضل.</p>
+                            </div>
+                            <div class="type-card">
+                                <h4>الدوران غير الطوعي</h4>
+                                <p>يحدث عندما تقوم الإدارة بإنهاء خدمات الموظف لأسباب مثل ضعف الأداء.</p>
+                            </div>
+                            <div class="type-card">
+                                <h4>الدوران الصحي</h4>
+                                <p>معدل الدوران ضمن المستويات الطبيعية والصحية للمنظمة.</p>
+                            </div>
+                            <div class="type-card">
+                                <h4>الدوران الضار</h4>
+                                <p>فقدان موظفين أساسيين ومهرة وذوي خبرة.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Section 5 -->
+                    <article id="section-5" class="content-article slide-in">
+                        <h2>استراتيجيات الموارد البشرية</h2>
+                        <h3>التوظيف الاستراتيجي المستدام</h3>
+                        <p>يُعد التوظيف الاستراتيجي المستدام حجر الزاوية في بناء قوة عاملة ملتزمة بالاستدامة. يتجاوز هذا النهج مجرد ملء الشواغر ليشمل جذب الأفراد الذين يمتلكون المهارات والكفاءات والقيم التي تدعم أهداف الاستدامة للمصنع.</p>
+                        
+                        <h3>تطوير ثقافة تنظيمية مستدامة</h3>
+                        <p>إن بناء ثقافة تنظيمية مستدامة أمر بالغ الأهمية لضمان تبني جميع الموظفين لقيم وممارسات الاستدامة في عملهم اليومي.</p>
+                        
+                        <h3>أنظمة تقييم الأداء المستدام</h3>
+                        <p>يجب أن تعكس أنظمة تقييم الأداء التزام المصنع بالاستدامة، وأن تكافئ الموظفين على مساهماتهم في تحقيق الأهداف البيئية والاجتماعية والاقتصادية.</p>
+                    </article>
+
+                    <!-- Section 6 -->
+                    <article id="section-6" class="content-article slide-in">
+                        <h2>آليات خفض دوران العمالة</h2>
+                        <h3>تحليل أسباب الدوران التشخيصية</h3>
+                        <p>قبل تطوير استراتيجيات الاحتفاظ، يجب على المصانع فهم الأسباب الجذرية لدوران العمالة.</p>
+                        
+                        <h3>برامج الاحتفاظ بالمواهب</h3>
+                        <p>بمجرد تحديد أسباب الدوران، يمكن للمصانع تطوير برامج احتفاظ مستهدفة للحفاظ على المواهب الرئيسية.</p>
+                        
+                        <h3>تحسين بيئة العمل</h3>
+                        <p>تلعب بيئة العمل دورًا حاسمًا في رضا الموظفين وقرارهم بالبقاء في المنظمة.</p>
+                    </article>
+
+                    <!-- Section 7 -->
+                    <article id="section-7" class="content-article slide-in">
+                        <h2>دراسات الحالة والتطبيقات العملية</h2>
+                        <p>لتوضيح كيفية تطبيق استراتيجيات الموارد البشرية المستدامة وآليات خفض دوران العمالة في الواقع، نقدم دراسات حالة من القطاع الصناعي.</p>
+                        
+                        <div class="case-study">
+                            <h3>دراسة حالة: مصنع السيارات الكهربائية</h3>
+                            <p>يواجه مصنع للسيارات الكهربائية تحديات كبيرة في بيئة تنافسية عالية ومتطلبات استدامة صارمة، بالإضافة إلى معدل دوران عمالة بلغ 25%.</p>
+                            <ul>
+                                <li>معدل دوران عمالة بلغ 25% مما أثر على الإنتاجية والجودة</li>
+                                <li>ضغوط تنافسية عالية في سوق السيارات الكهربائية المتنامي</li>
+                                <li>متطلبات استدامة صارمة من قبل الجهات التنظيمية والعملاء</li>
+                            </ul>
+                        </div>
+                    </article>
+                </main>
             </div>
         </div>
     </section>
 
-    <!-- Sources Section -->
-    <section id="sources" class="sources-section">
+    <!-- Audio Section -->
+    <section id="audio" class="audio-section">
         <div class="container">
-            <h2 class="section-title">المصادر الأكاديمية</h2>
-            <p class="section-subtitle">مجموعة شاملة من المصادر والمراجع العلمية</p>
+            <h2>الملفات الصوتية والوثائق</h2>
             
-            <div class="sources-grid" id="sourcesList">
-                <!-- Sources will be inserted here by JavaScript -->
+            <div class="media-grid">
+                <!-- Audio Player -->
+                <div class="media-card audio-card">
+                    <div class="media-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>مشغل الصوت</h3>
+                    <p>استمع إلى الملف الصوتي</p>
+                    <audio id="audioPlayer" controls class="audio-player">
+                        <source src="1.ogg" type="audio/ogg">
+                        متصفحك لا يدعم تشغيل الملفات الصوتية
+                    </audio>
+                </div>
+
+                <!-- PDF Download -->
+                <div class="media-card pdf-card">
+                    <div class="media-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>عارض المستندات</h3>
+                    <p>اقرأ ملف PDF</p>
+                    <div class="pdf-download">
+                        <a href="1.pdf" target="_blank" class="download-btn">
+                            <i class="fas fa-download"></i> فتح/تحميل PDF
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -115,25 +203,19 @@
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">حول هذا المشروع</h2>
-            <div class="about-content">
-                <p>تم جمع هذه المصادر كجزء من بحث شامل حول دور إدارة الموارد البشرية في تحقيق الاستدامة الصناعية وخفض معدلات دوران العمالة.</p>
-                <p>يتضمن هذا المشروع مراجع أكاديمية موثوقة من جامعات ومؤسسات بحثية معروفة، بالإضافة إلى مقالات متخصصة وأوراق بحثية.</p>
-            </div>
+            <h2>حول هذا المشروع</h2>
+            <p>هذا المشروع يقدم دراسة شاملة عن دور الموارد البشرية الاستراتيجية في تعزيز الاستدامة الصناعية والحد من دوران العمالة. يجمع بين الإطار النظري والتطبيقات العملية لتقديم حل متكامل للمنشآت الصناعية.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-text">© 2025 - جميع الحقوق محفوظة</p>
-            <p class="footer-author">
-                <i class="fas fa-user-circle"></i>
-                <span>سيف علي</span>
-            </p>
+        <div class="container">
+            <p>&copy; 2025 سيف علي - جميع الحقوق محفوظة</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
+
