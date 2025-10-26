@@ -295,6 +295,18 @@ function initGlowEffect() {
     });
 }
 
+// Auto-play Audio After 5 Seconds
+function initAutoPlayAudio() {
+    setTimeout(() => {
+        const audioPlayer = document.querySelector('.audio-player');
+        if (audioPlayer) {
+            audioPlayer.play().catch(error => {
+                console.log('Auto-play was prevented:', error);
+            });
+        }
+    }, 5000);
+}
+
 // Initialize All Functions
 document.addEventListener('DOMContentLoaded', () => {
     initSpiderWeb();
@@ -309,6 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoadingAnimation();
     initScrollAnimations();
     initGlowEffect();
+    initAutoPlayAudio();
     
     // Add initial opacity
     document.body.style.opacity = '0';
